@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view style="width: 100%; height: 100%;" wx:if="{{!isCanvas}}">
+  <!-- 地图 -->
+  <view class="map_container">
+    <map class='map' id='map' longitude='{{longitude}}' latitude='{{latitude}}' scale='{{scale}}' markers='{{markers}}' polyline='{{polyline}}' bindtap='bindmaptap' show-location>
+    </map>
+  </view>
+</view>
+
+<view wx:else>
+  <!--WebGL层-->
+  <canvas
+    type="webgl" 
+    id="webgl" 
+    canvas-id="webgl" 
+    style="position:fixed;top:0;width:{{canvasWidth}}px;height:{{canvasHeight}}px;z-index:1;"
+    bindtouchend="stopCanvas">
+  </canvas>
+  <!--摄像头层-->
+  <camera
+    mode="normal" 
+    device-position="back" 
+    flash="auto" 
+    frame-size="medium"
+    style="position:fixed;top:0;width:100%;height:100%;z-index:0;">
+  </camera>
+</view>
